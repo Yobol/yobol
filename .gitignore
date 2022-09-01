@@ -16,3 +16,6 @@
 
 # server
 server/etc/config.yaml
+
+# IDE
+.vscode
