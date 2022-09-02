@@ -83,7 +83,7 @@ $ npm install
 $ npm run dev
 ```
 
-When you are ready to shp your app to production, run the following:
+When you are ready to ship your app to production, run the following:
 
 ```shell
 $ npm run build
@@ -91,12 +91,16 @@ $ npm run build
 
 This will create a production-ready build of your app in the project's `./dist`  directory.
 
-##### [Tips]
+##### Tips
 
-- Recommended IDE setup: [Visual Studio Code](https://code.visualstudio.com/) + [Volar extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+- Recommended IDE setup: [Visual Studio Code](https://code.visualstudio.com/) + [Volar extension](https://marketplace.visualstudio.com/items?itemName=Vue.volar) + [JavaScript and TypeScript Nightly](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next)
+
+- Project build tool: [Vite](https://vitejs.dev/)
 
 #### [Ant Design of Vue](https://www.antdv.com/docs/vue/introduce)
 
 The UI component library for Vue.
 
 ### Backend
+
+### Deployment
