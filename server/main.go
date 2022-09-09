@@ -4,11 +4,16 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/yobol/yobol/config"
 )
 
 const (
 	AuthCookieName = "YAC"
 )
+
+func init() {
+	config.Init()
+}
 
 func main() {
 	route := gin.Default()
