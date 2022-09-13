@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 basePath: /api/v1
+=======
+basePath: /apidocs/#/
+>>>>>>> 5b00e475eb6f9bee36e65938240180b4048bf3fc
 host: host:8080
 info:
   contact:

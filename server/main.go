@@ -56,9 +56,14 @@ func main() {
 			"message": "Login Success!",
 		})
 	})
+<<<<<<< HEAD
 	// use ginSwagger middleware to serve the API docs
 	route.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	route.Run(fmt.Sprintf("%s:%d", config.C.Server.Host, config.C.Server.Port)) // listen and serve on 0.0.0.0:8080
+=======
+	route.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	route.Run() // listen and serve on 0.0.0.0:8080
+>>>>>>> 5b00e475eb6f9bee36e65938240180b4048bf3fc
 }
 
 func CheckCookie() gin.HandlerFunc {
