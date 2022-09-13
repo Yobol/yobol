@@ -6,6 +6,12 @@
 
 `gin-swagger` 提供[声明式注释](https://github.com/swaggo/swag/blob/master/README.md#declarative-comments-format)帮助开发者自动为接口生成 `Swagger2.0` 的 `RESTful` 文档。 
 
+### [API 概要信息](https://github.com/swaggo/swag#general-api-info)
+
+参考官方示例：[celler/main.go]()。
+
+`注：该部分注释需要添加到 `main.go` 文件中。`
+
 ## 下载使用
 
 ### 下载 `swag`
@@ -39,6 +45,13 @@ $ go get -u github.com/swaggo/files
 ```go
 import (
     "github.com/swaggo/gin-swagger" // gin-swagger middleware
-    "github.com/swaggo/files"       // swagger embed files`
+    "github.com/swaggo/files"       // swagger embed files
 )
+
+func xxx() {
+    route := gin.Default()
+    ...
+    route.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+    route.Run()
+}
 ```
