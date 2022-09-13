@@ -1,7 +1,19 @@
 {
+    "schemes": [
+        "http",
+        "https"
+    ],
     "swagger": "2.0",
     "info": {
-        "contact": {}
+        "title": "API Docs for Yobol",
+        "contact": {
+            "name": "Yobol",
+            "url": "yobol.me (unavailble)",
+            "email": "yobol1024@gmail.com"
+        },
+        "version": "1.0.0"
     },
+    "host": "host:8080",
+    "basePath": "/api/v1",
     "paths": {}
 }

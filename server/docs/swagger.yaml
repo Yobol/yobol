@@ -1,4 +1,14 @@
+basePath: /api/v1
+host: host:8080
 info:
-  contact: {}
+  contact:
+    email: yobol1024@gmail.com
+    name: Yobol
+    url: yobol.me (unavailble)
+  title: API Docs for Yobol
+  version: 1.0.0
 paths: {}
+schemes:
+- http
+- https
 swagger: "2.0"

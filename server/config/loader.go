@@ -7,12 +7,12 @@ import (
 	"github.com/spf13/viper"
 )
 
-var Config *Server
+var C *Config
 
 // environment variables > config defaults
 
 func Init() {
-	Config = new(Server)
+	C = new(Config)
 
 	v := viper.New()
 	v.SetConfigName("config") // name of config file (without extension)
@@ -23,10 +23,10 @@ func Init() {
 	if err := v.ReadInConfig(); err != nil {
 		panic(fmt.Errorf("fatal error read config file: %s", err))
 	}
-	if err := v.Unmarshal(Config); err != nil {
+	if err := v.Unmarshal(C); err != nil {
 		panic(fmt.Errorf("fatal error unmarshal config file: %s", err))
 	}
-	if data, err := json.MarshalIndent(Config, "", "    "); err != nil {
+	if data, err := json.MarshalIndent(C, "", "    "); err != nil {
 		panic(fmt.Errorf("fatal error marshal config file with indent: %s", err))
 	} else {
 		fmt.Println(string(data))
