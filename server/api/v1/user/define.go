@@ -2,14 +2,16 @@ package user
 
 import "github.com/gin-gonic/gin"
 
-type UserGroup struct{}
+type Group struct{}
 
-func (g *UserGroup) CreateUser(c *gin.Context) {}
+func (g *Group) CreateUser(c *gin.Context) {}
 
-func (g *UserGroup) DeleteUser(c *gin.Context) {}
+func (g *Group) DeleteUser(c *gin.Context) {}
 
-func (g *UserGroup) UpdateUser(c *gin.Context) {}
+func (g *Group) UpdateUser(c *gin.Context) {}
 
-func (g *UserGroup) ListUsers(c *gin.Context) {}
+func (g *Group) ListUsers(c *gin.Context) {}
 
-func (g *UserGroup) GetUser(c *gin.Context) {}
+func (g *Group) GetUser(c *gin.Context) {}
+
+var group = new(Group)

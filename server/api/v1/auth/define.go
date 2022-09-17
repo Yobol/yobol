@@ -2,12 +2,14 @@ package auth
 
 import "github.com/gin-gonic/gin"
 
-type AuthGroup struct{}
+type Group struct{}
 
-func (g *AuthGroup) Login(c *gin.Context) {
+func (g *Group) Login(c *gin.Context) {
+
+}
+
+func (g *Group) Logout(c *gin.Context) {
 
 }
 
-func (g *AuthGroup) Logout(c *gin.Context) {
-
-}
+var group = new(Group)
