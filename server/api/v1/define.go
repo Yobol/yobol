@@ -2,6 +2,7 @@ package v1
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/yobol/yobol/api/v1/article"
 	"github.com/yobol/yobol/api/v1/auth"
 	"github.com/yobol/yobol/api/v1/user"
 )
@@ -12,6 +13,9 @@ func MountApiGroups(router *gin.Engine) error {
 		return err
 	}
 	if err := user.MountApiGroup(group); err != nil {
+		return err
+	}
+	if err := article.MountApiGroup(group); err != nil {
 		return err
 	}
 	return nil
