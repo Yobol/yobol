@@ -24,8 +24,8 @@ const (
 // @contact.email  yobol1024@gmail.com
 // @contact.url    yobol.me (unavailble)
 
-// @Schemes   https http
-// @host      host:8080
+// @Schemes   http https
+// @host      localhost:8080
 // @BasePath  /
 
 func main() {

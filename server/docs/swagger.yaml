@@ -1,9 +1,24 @@
-<<<<<<< HEAD
-basePath: /api/v1
-=======
-basePath: /apidocs/#/
->>>>>>> 5b00e475eb6f9bee36e65938240180b4048bf3fc
-host: host:8080
+basePath: /
+definitions:
+  auth.LoginReq:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    type: object
+  httputils.Empty:
+    type: object
+  httputils.Error:
+    properties:
+      code:
+        type: integer
+      message:
+        type: string
+    type: object
+  model.User:
+    type: object
+host: localhost:8080
 info:
   contact:
     email: yobol1024@gmail.com
@@ -11,7 +26,96 @@ info:
     url: yobol.me (unavailble)
   title: API Docs for Yobol
   version: 1.0.0
-paths: {}
+paths:
+  /api/v1/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: login with username & password
+      operationId: v1-auth-login
+      parameters:
+      - description: request boy for login
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/auth.LoginReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputils.Empty'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/httputils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputils.Error'
+      summary: Auth Login
+      tags:
+      - auth
+  /api/v1/auth/logout:
+    post:
+      consumes:
+      - application/json
+      description: logout to clear auth cookie YAT
+      operationId: v1-auth-logout
+      parameters:
+      - description: yobol auth token
+        in: header
+        name: YAT
+        type: string
+      - description: empty request body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/httputils.Empty'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputils.Empty'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputils.Error'
+      summary: Auth Logout
+      tags:
+      - auth
+  /api/v1/auth/whoami:
+    get:
+      description: get the profile of the currently logged in user
+      operationId: v1-auth-whoami
+      parameters:
+      - description: yobol auth token
+        in: header
+        name: YAT
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.User'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/httputils.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputils.Error'
+      summary: Who Am I
+      tags:
+      - auth
 schemes:
 - http
 - https
