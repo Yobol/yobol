@@ -8,9 +8,50 @@
 
 ### [API 概要信息](https://github.com/swaggo/swag#general-api-info)
 
-参考官方示例：[celler/main.go]()。
+参考官方示例：[celler/main.go](https://github.com/swaggo/swag/blob/master/example/celler/main.go)。
 
-`注：该部分注释需要添加到 `main.go` 文件中。`
+`注：该部分注释需要添加到 main.go 文件中，不一定非要添加在 main() 方法上。`
+
+### [API 操作](https://github.com/swaggo/swag#api-operation)
+
+参考官方示例：[celler/controller](https://github.com/swaggo/swag/tree/master/example/celler/controller)。
+
+|注释|描述|示例|
+|:---:|:---|:---|
+|id|标识操作在同一应用程序中的唯一性，可省略||
+|summary|操作的简要概述||
+|description|操作的详细解释||
+|tags|操作归属的标签列表，用逗号 `,` 分隔||
+|router|请求路径，包含 `path` 和 `http method`，用空格 ` ` 分隔||
+|security|支持的[安全认证](https://github.com/swaggo/swag#security)||
+|param|请求参数，包含 `param name`、[`param type`](https://github.com/swaggo/swag#param-type)、[`data type`](https://github.com/swaggo/swag#data-type)、`is_mandatory`、`comment` 和 [`attribute`](https://github.com/swaggo/swag#attribute)，用空格 ` ` 分隔||
+|accept|请求体的 [`MIME`](https://github.com/swaggo/swag#mime-types) 类型，仅对 `POST`，`PUT` 和 `PATCH` 方法有效 ||
+|header|响应头，包含 `return code`、[`data type`](https://github.com/swaggo/swag#data-type)、`header name` 和 `comment`，用空格 ` ` 分隔||
+|produce|响应体的 [`MIME`](https://github.com/swaggo/swag#mime-types) 类型||
+|success|成功的响应，包含 `return code`、[`param type`](https://github.com/swaggo/swag#param-type)、[`data type`](https://github.com/swaggo/swag#data-type) 和 `comment`，用空格 ` ` 分隔||
+|failure|失败的响应，包含 `return code`、[`param type`](https://github.com/swaggo/swag#param-type)、[`data type`](https://github.com/swaggo/swag#data-type) 和 `comment`，用空格 ` ` 分隔||
+|response|同 `success` 和 `failure`||
+
+`注：该部分注释需要添加到 API 操作相应的处理函数上。`
+
+#### 设置请求体
+
+```go
+// @Param  {param name} {param type} {data type} {is_mandatory} {comment} {attribute}
+// @Param  request      body         model.Model true           "xxx"
+
+// @Accept {mime type}
+// @Accept application/json
+```
+
+#### 添加响应头
+
+```go
+// @Header {return code}    {data type}  {header name}  {comment}
+// @Header 200              {string}     Location       "/entity/1"
+// @Header 200,400,default  {string}     Token          "token"
+// @Header all              {string}     Token2         "token2"
+```
 
 ## 下载使用
 
@@ -32,7 +73,7 @@ $ go install github.com/swaggo/swag/cmd/swag@latest
 $ swag init
 ```
 
-`注：记得将 $GOPATH/bin 目录加到操作系统 PATH 中。`
+`注：记得将 $GOPATH/bin 目录加到操作系统 PATH 中，并且每次更新 API 接口时都要执行该命令！`
 
 ```shell
 # import gin-swagger depedencies
