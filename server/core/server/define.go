@@ -18,6 +18,8 @@ type server interface {
 }
 
 func Run() {
+	// gin.Default() will return a *gin.Engine with the Logger and Recovery middlewares already attached.
+	// gin.New() will return a *gin.Engine without any middleware attached.
 	router := gin.Default()
 	if err := v1.MountApiGroups(router); err != nil {
 		panic(err)

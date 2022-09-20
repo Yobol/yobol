@@ -7,8 +7,16 @@ import (
 	"github.com/yobol/yobol/api/v1/user"
 )
 
+var handlers = []gin.HandlerFunc{
+	AuthHandler(),
+}
+
 func MountApiGroups(router *gin.Engine) error {
 	group := router.Group("/api/v1")
+	for _, handler := range handlers {
+		group.Use(handler)
+	}
+
 	if err := auth.MountApiGroup(group); err != nil {
 		return err
 	}
@@ -19,4 +27,10 @@ func MountApiGroups(router *gin.Engine) error {
 		return err
 	}
 	return nil
+}
+
+// AuthHandler is a gin middleware for checking authority.
+func AuthHandler() gin.HandlerFunc {
+	return func(c *gin.Context) {
+	}
 }
