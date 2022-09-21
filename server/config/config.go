@@ -4,7 +4,8 @@ import "time"
 
 type Config struct {
 	Server *Server `json:"server" yaml:"server"`
-	MySQL  *MySQL  `json:"mysql" yaml:"mysql"`
+
+	MySQL *MySQL `json:"mysql" yaml:"mysql"`
 }
 
 type Server struct {
@@ -15,9 +16,9 @@ type Server struct {
 }
 
 type Auth struct {
-	TokenName   string        `json:"token_name" yaml:"token_name"`
-	TokenMaxAge time.Duration `json:"token_max_age" yaml:"token_max_age"`
-	JWTSecret   string        `json:"jwt_secret" yaml:"jwt_secret"`
+	TokenName   string        `mapstructure:"token_name" json:"token_name" yaml:"token_name"`
+	TokenMaxAge time.Duration `mapstructure:"token_max_age" json:"token_max_age" yaml:"token_max_age"`
+	JWTSecret   string        `mapstructure:"jwt_secret" json:"jwt_secret" yaml:"jwt_secret"`
 }
 
 type MySQL struct {

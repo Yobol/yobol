@@ -4,7 +4,7 @@ server:
 
   auth:
     token_name: YAT
-    token_max_age: 7d
+    token_max_age: 72h
     jwt_secret: .!y2o0b2o2l!.
 
 mysql:
