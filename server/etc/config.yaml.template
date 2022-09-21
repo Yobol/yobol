@@ -2,6 +2,11 @@ server:
   host: 0.0.0.0
   port: 8080
 
+  auth:
+    token_name: YAT
+    token_max_age: 7d
+    jwt_secret: .!y2o0b2o2l!.
+
 mysql:
   host: 127.0.0.1
   port: 3306

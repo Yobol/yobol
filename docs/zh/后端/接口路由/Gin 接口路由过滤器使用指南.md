@@ -145,6 +145,37 @@ func main() {
 
 ### 自定义 `middleware`
 
-```go
+按照如下方式可实现自定义 `middleware`：
 
+```go
+func AuthHandler() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		// pre-handle request
+		token := c.GetHeader(config.C.Server.Auth.TokenName)
+		if token == "" {
+			c.AbortWithStatusJSON(http.StatusUnauthorized, httputils.Error{
+				Code:    http.StatusUnauthorized,
+				Message: ErrLackAuthToken.Error(),
+			})
+			return
+		}
+
+		claims, err := httputils.NewJWT().ParseToken(token)
+		if err != nil {
+			c.AbortWithStatusJSON(http.StatusUnauthorized, httputils.Error{
+				Code:    http.StatusUnauthorized,
+				Message: err.Error(),
+			})
+			return
+		}
+		c.Set(httputils.ClaimsKey, claims)
+
+		// in-handle request
+		c.Next()
+
+		// post-handle request
+	}
+}
 ```
+
+使用 `Gin` 框架提供的 `router.Use(middleware ...HandlerFunc)` 方法即可注册 `middleware`。

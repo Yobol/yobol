@@ -1,9 +1,13 @@
 package auth
 
 import (
+	"fmt"
+	"net/http"
+
 	"github.com/gin-gonic/gin"
 	_ "github.com/yobol/yobol/dao/model"
 	_ "github.com/yobol/yobol/utils/http"
+	httputils "github.com/yobol/yobol/utils/http"
 )
 
 var group = new(Group)
@@ -28,7 +32,29 @@ type LoginReq struct {
 // @Failure     401 {object} httputils.Error
 // @Failure     500 {object} httputils.Error
 func (g *Group) Login(c *gin.Context) {
+	req := new(LoginReq)
+	if err := c.ShouldBindJSON(req); err != nil {
+		httputils.FailureResponse(c, http.StatusBadRequest, err.Error())
+		return
+	}
+	if req.Username != "admin" {
+		httputils.FailureResponse(c, http.StatusUnauthorized, fmt.Sprintf("%s not found", req.Username))
+		return
+	}
+	if req.Password != "123456" {
+		httputils.FailureResponse(c, http.StatusUnauthorized, fmt.Sprint("incorrect password", req.Username))
+		return
+	}
 
+	token, err := httputils.NewJWT().CreateToken(&httputils.BaseClaims{
+		Username: req.Username,
+	})
+	if err != nil {
+		httputils.FailureResponse(c, http.StatusInternalServerError, err.Error())
+		return
+	}
+	httputils.SetAuthCookie(c, token)
+	httputils.SuccessResponse(c, httputils.Empty{})
 }
 
 // @Id          v1-auth-logout
