@@ -10,4 +10,8 @@ Profile Examples: [Awesome GitHub Profile](https://zzetao.github.io/awesome-gith
 
 ### [create a GitHub contribution calendar on a 3D profile image](https://github.com/yoshi389111/github-profile-3d-contrib)
 
-![GitHub Profile 3D Contrib](image.png)
+![GitHub Profile 3D Contrib](./assets/imgs/github_profile_3d_contrib_demo.png)
+
+## Generator
+
+### [create a personalized profile quickly and easily](https://github.com/maurodesouza/profile-readme-generator)
